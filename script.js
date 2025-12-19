@@ -67,7 +67,7 @@ function renderUsers(users) {
     for (let id in users) {
         if (users[id].username === myName) continue; 
         
-        const symbol = users[id].gender === 'male' ? '👨' : '👩';
+        const symbol = users[id].gender === 'male' ? '👨' : '👧';
         const li = document.createElement('li');
         li.innerHTML = `
             <div class="user-info">

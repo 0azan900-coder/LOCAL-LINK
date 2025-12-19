@@ -2,40 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Link</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NeonLounge | Chat</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="login-screen" class="card">
-        <h1>Local Link</h1>
-        <p>Who's nearby?</p>
-        <input type="text" id="username" placeholder="Enter your name...">
-        
-        <div class="gender-selection">
-            <label><input type="radio" name="gender" value="male" checked> 👨 Male</label>
-            <label><input type="radio" name="gender" value="female"> 👩 Female</label>
+    <div id="login-screen">
+        <div class="login-card">
+            <h1>LOCA<span>LINK</span></h1>
+            <p>LETS VIBE</p>
+            <input type="text" id="username" placeholder="Pick a cool username..." maxlength="15">
+            <div class="gender-selection">
+                <label><input type="radio" name="gender" value="male" checked> 👨 Male</label>
+                <label><input type="radio" name="gender" value="female"> 👧 Female</label>
+            </div>
+            <button id="joinBtn">SOCIALIZE</button>
         </div>
-        
-        <button id="joinBtn">Join Local Space</button>
     </div>
 
-    <div id="main-screen" class="card" style="display:none;">
-        <h2>People Nearby</h2>
-        <ul id="user-list"></ul>
-    </div>
-
-    <div id="chat-window" style="display:none;">
-        <div class="chat-header">
-            <span id="chat-with-name">Chat</span>
-            <button id="closeBtn">✕</button>
+    <div id="main-screen">
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h3>VIBING NOW</h3>
+            </div>
+            <ul id="user-list"></ul>
         </div>
-        <div id="chat-messages"></div>
-        <div class="chat-input-area">
-            <input type="text" id="msgInput" placeholder="Message...">
-            <button id="sendBtn">Send</button>
+
+        <div id="chat-window">
+            <div id="chat-header">
+                <button id="mobileBackBtn">◀</button>
+                <span id="chat-with-name">Tap someone to talk</span>
+                <button id="closeBtn">EXIT</button>
+            </div>
+            
+            <div id="chat-messages"></div>
+
+            <div id="chat-input-area">
+                <input type="text" id="msgInput" placeholder="Send a vibe..." autocomplete="off">
+                <button id="sendBtn">➤</button>
+            </div>
         </div>
     </div>
 

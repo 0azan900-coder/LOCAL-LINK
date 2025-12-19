@@ -1,133 +1,326 @@
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 0;
+}
+
+body {
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1b 100%);
     height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* --- Login Screen: Neon Style --- */
+#login-screen {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    height: 100vh;
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+.login-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
-    width: 320px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-.gender-selection {
-    display: flex;
-    justify-content: space-around;
-    margin: 10px 0 20px 0;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 15px;
-}
+h1 { font-family: 'Orbitron', sans-serif; letter-spacing: 2px; color: #00d4ff; }
+h1 span { color: #ff007f; }
 
 input[type="text"] {
-    width: 85%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-}
-
-button {
-    background: #ff75c3;
+    background: rgba(0,0,0,0.3);
+    border: 2px solid #00d4ff;
+    padding: 12px 20px;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
+    border-radius: 15px;
+    margin: 20px 0;
+    outline: none;
     transition: 0.3s;
 }
 
-button:hover { background: #ffa4d4; transform: scale(1.05); }
+input[type="text"]:focus { box-shadow: 0 0 15px #00d4ff; }
 
-ul { list-style: none; padding: 0; margin-top: 20px; }
-li {
-    background: rgba(255, 255, 255, 0.1);
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#chat-window {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    background: white;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    color: #333;
-    z-index: 1000;
-}
-
-.chat-header {
-    background: #764ba2;
+#joinBtn {
+    background: linear-gradient(45deg, #00d4ff, #ff007f);
+    border: none;
+    padding: 15px 40px;
     color: white;
-    padding: 15px;
-    border-radius: 15px 15px 0 0;
-    display: flex;
-    justify-content: space-between;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
-#chat-messages {
-    flex: 1;
-    overflow-y: auto;
+/* --- Main Layout: Glassmorphism Sidebar --- */
+#main-screen { display: none; height: 100vh; width: 100vw; padding: 10px; gap: 10px; }
+
+#sidebar {
+    width: 280px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: center; }
+
+#user-list li {
     padding: 15px;
+    margin: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+#user-list li:hover { background: rgba(0, 212, 255, 0.2); transform: scale(1.02); }
+
+/* --- Chat Window: iOS Glowing Bubbles --- */
+#chat-window {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-.chat-input-area { padding: 10px; display: flex; border-top: 1px solid #eee; }
-.msg { padding: 8px 12px; border-radius: 15px; font-size: 0.85rem; max-width: 70%; }
-.sent { background: #ff75c3; color: white; align-self: flex-end; }
-.received { background: #f0f0f0; color: #333; align-self: flex-start; }
-/* Container for the name and badge */
+#chat-header { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
+
+#chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+
+.msg {
+    max-width: 70%;
+    padding: 12px 18px;
+    border-radius: 22px;
+    font-weight: 500;
+}
+
+.sent {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #00d4ff, #007aff);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    border-bottom-right-radius: 4px;
+}
+
+.received {
+    align-self: flex-start;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-bottom-left-radius: 4px;
+}
+
+#chat-input-area { padding: 20px; display: flex; gap: 10px; }
+
+#msgInput {
+    flex: 1;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 20px;
+    color: white;
+    border-radius: 30px;
+    outline: none;
+}
+
+#sendBtn {
+    background: #00d4ff;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Notification Dot */
+.notification-dot {
+    width: 12px;
+    height: 12px;
+    background: #ff007f;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff007f;
+    display: none;
+}
+
+.show-dot { display: block; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    #sidebar { width: 100%; }
+    #chat-window { display: none; width: 100%; }
+    #mobileBackBtn { display: block; border: none; background: none; color: white; font-size: 20px; }
+}
+/* --- Fix for Back and Send Buttons --- */
+#mobileBackBtn, #closeBtn, #sendBtn {
+    background: transparent; /* Removes that white/grey box */
+    border: none;
+    color: #00d4ff; /* Matches your neon blue */
+    font-size: 22px;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s, text-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mobileBackBtn:hover, #sendBtn:hover {
+    transform: scale(1.2);
+    text-shadow: 0 0 10px #00d4ff;
+}
+
+#closeBtn {
+    font-size: 14px;
+    font-family: 'Orbitron', sans-serif;
+    color: #ff007f; /* Neon Pink for exit */
+    border: 1px solid rgba(255, 0, 127, 0.3);
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+#closeBtn:hover {
+    background: rgba(255, 0, 127, 0.1);
+    box-shadow: 0 0 15px #ff007f;
+}
+
+/* --- Fix for the Input Field Background --- */
+#chat-input-area {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    background: transparent; /* Match the glass look */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#msgInput {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05); /* Very slight tint */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 20px;
+    color: white;
+    border-radius: 30px;
+    outline: none;
+}
+
+#msgInput::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+/* --- Neon Chat Button Styling --- */
+.chat-btn {
+    background: transparent; /* Remove the white background */
+    border: 1px solid #00d4ff; /* Neon blue border */
+    color: #00d4ff;
+    padding: 5px 15px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chat-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* --- Improve the User List Item Layout --- */
+#user-list li {
+    padding: 15px;
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between; /* Pushes name to left, button to right */
+    align-items: center;
+    transition: 0.3s;
+}
+
 .user-info {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
 }
+/* --- Login Screen Improvements --- */
 
-/* The small red dot */
-.notification-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #ff3b30;
-    border-radius: 50%;
-    position: absolute;
-    top: -2px;
-    left: -5px;
-    display: none; /* Hidden by default */
-    box-shadow: 0 0 8px #ff3b30;
-    animation: pulse-dot 1.5s infinite;
+/* --- Custom Neon Gender Selectors --- */
+.gender-selection {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px; /* Space above the Enter button */
 }
 
-@keyframes pulse-dot {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
+/* Hide the default tiny circle */
+.gender-selection input[type="radio"] {
+    display: none;
 }
 
-/* Class to show the dot */
-.show-dot {
-    display: block !important;
+.gender-selection label {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Male Selection - Neon Blue Glow */
+.gender-selection input[value="male"]:checked + span {
+    color: #00d4ff;
+}
+.gender-selection input[value="male"]:checked ~ label[for="male"], 
+/* If you use labels correctly, or just target the label: */
+.gender-selection label:has(input[value="male"]:checked) {
+    border-color: #00d4ff;
+    color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+/* Female Selection - Neon Pink Glow */
+.gender-selection label:has(input[value="female"]:checked) {
+    border-color: #ff007f;
+    color: #ff007f;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+    background: rgba(255, 0, 127, 0.1);
+}
+
+/* Hover effects to show they are clickable */
+.gender-selection label:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.08);
+}
+#joinBtn {
+    display: block;          /* Allows centering */
+    margin: 0 auto;          /* Centers the button itself */
+    background: linear-gradient(45deg, #00d4ff, #ff007f);
+    border: none;
+    padding: 15px 40px;
+    color: white;
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+#joinBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00d4ff, 0 0 40px #ff007f;
 }
