@@ -5,13 +5,27 @@
 }
 
 body {
-    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1b 100%);
+    /* Use the special iOS height calculation */
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
+    height: -webkit-fill-available; 
+    
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1b 100%);
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+    
+    /* Ensure background stays fixed even if the browser address bar moves */
+    background-attachment: fixed;
 }
 
+#main-screen, #login-screen {
+    /* Use safe area insets to prevent content from touching the very top/bottom */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    
+    height: 100%;
+    display: flex;
+}
 /* --- Login Screen: Neon Style --- */
 #login-screen {
     display: flex;
@@ -118,7 +132,15 @@ input[type="text"]:focus { box-shadow: 0 0 15px #00d4ff; }
     border-bottom-left-radius: 4px;
 }
 
-#chat-input-area { padding: 20px; display: flex; gap: 10px; }
+#chat-input-area {
+    padding: 20px;
+    /* This ensures the input area stays above the iPhone home swipe line */
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+}
 
 #msgInput {
     flex: 1;
